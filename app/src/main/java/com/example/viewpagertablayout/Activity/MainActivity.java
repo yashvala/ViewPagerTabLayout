@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION = 1;
     private static final int STORAGE_PERMISSION = 1;
     private static final int CONTACTS_PERMISSION = 1;
-    final static int REQUEST_CAMERA = 1;
+    private static final int REQUEST_CAMERA = 1;
 
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                checkPermission(Manifest.permission.CAMERA, REQUEST_CAMERA);
+
                 switch (tab.getPosition()) {
                     case 0:
                         checkPermission(Manifest.permission.READ_SMS, CHAT_PERMISSION);
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         checkPermission(Manifest.permission.READ_CONTACTS, CONTACTS_PERMISSION);
                         break;
                 }
+
             }
 
             @Override
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Open Gallery Selected", Toast.LENGTH_SHORT).show();
         }
         else {
-            return false;
+            return true;
         }
         return true;
     }
