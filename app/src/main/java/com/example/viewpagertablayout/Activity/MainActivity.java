@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                         checkPermission(Manifest.permission.READ_CONTACTS, CONTACTS_PERMISSION);
                         break;
                 }
-
             }
 
             @Override
@@ -132,26 +131,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.itemOne) {
+            openCamera();
+            return true;
+        } else if (item.getItemId() == R.id.itemTwo) {
+            Toast.makeText(this, "uftfyuf", Toast.LENGTH_SHORT).show();        } else {
+            return true;
+        }
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.itemOne){
-            openCamera();
-            return true;
-        }
-        else if(item.getItemId()==R.id.itemTwo) {
-            Toast.makeText(this, "Open Gallery Selected", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            return true;
-        }
-        return true;
     }
 
     public void openCamera() {
@@ -218,10 +213,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == REQUEST_CAMERA) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openCamera();
-                Toast.makeText(this, "Permission Allow !",Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Denied", Toast.LENGTH_SHORT).show();
             }
